@@ -8,6 +8,10 @@ import pathlib
 import requests
 import hashlib
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+
+
+load_dotenv()
 requests.urllib3.disable_warnings()
 
 ######################
@@ -15,10 +19,10 @@ requests.urllib3.disable_warnings()
 ######################
 
 #Session Variables (update every time you login or your browser updates)
-USER_ID = ""
-USER_AGENT = ""
-X_BC = ""
-SESS_COOKIE = ""
+USER_ID = os.environ.get('USER_ID')
+USER_AGENT = os.environ.get('USER_AGENT')
+X_BC = os.environ.get('X_BC')
+SESS_COOKIE = os.environ.get('SESS_COOKIE')
 
 #0 = do not print file names or api calls
 #1 = print filenames only when max_age is set
@@ -283,6 +287,10 @@ if __name__ == "__main__":
 
 	if PROFILE_LIST[0] == "all":
 		PROFILE_LIST = get_subscriptions()
+
+	if(PROFILE_LIST is None or len(PROFILE_LIST) == 0):
+		print("\nNo profiles to download, exiting...")
+		exit()
 
 	for PROFILE in PROFILE_LIST:
 		if PROFILE in ByPass:
