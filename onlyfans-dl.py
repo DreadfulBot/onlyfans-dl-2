@@ -66,9 +66,10 @@ API_HEADER = {
 	"User-Agent": USER_AGENT,
 	"x-bc": X_BC,
 	"user-id": USER_ID,
-	"Cookie": "auh_id=" + USER_ID + "; sess=" + SESS_COOKIE
+	"Cookie": "auth_id=" + USER_ID + ";sess=" + SESS_COOKIE
 }
 
+print("\nRunning with headers: %s\n", API_HEADER)
 
 def create_signed_headers(link, queryParams):
 	global API_HEADER
