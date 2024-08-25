@@ -190,6 +190,10 @@ def download_media(media, subtype, postdate, album = ''):
 		else:
 			if "files" in media and "full" in media["files"]:
 				source = media["files"]["full"]["url"]
+	
+	if source is None:
+		print("No source found for media")
+		return
 
 	if (media["type"] != "photo" and media["type"] != "video" and media["type"] != "audio" and media["type"] != "gif") or not media['canView']:
 		return
